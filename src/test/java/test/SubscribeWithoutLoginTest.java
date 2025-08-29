@@ -8,8 +8,9 @@ import pages.ChannelPage;
 import pages.HomePage;
 import pages.SearchResultsPage;
 
-import static constant.Constant.Owners.NAZAR;
 import static org.testng.AssertJUnit.*;
+
+import static constant.Constant.Owners.NAZAR;
 import static utils.DataGenerator.generateRandomDigits;
 
 public class SubscribeWithoutLoginTest extends BaseTest {
@@ -24,8 +25,9 @@ public class SubscribeWithoutLoginTest extends BaseTest {
         SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
         ChannelPage channelPage = new ChannelPage(driver);
 
-        assertEquals(homePage.openHomePage()
-                .getPageTitle(), expectedPageTitle, "Page title is incorrect!");
+        assertEquals("Page title is incorrect!",
+                homePage.openHomePage()
+                        .getPageTitle(), expectedPageTitle);
 
         homePage.getHeaderFragment()
                 .inputTextInSearchField(generateRandomDigits())
@@ -34,9 +36,10 @@ public class SubscribeWithoutLoginTest extends BaseTest {
                 .clickVideoByIndex(4)
                 .clickOnChannelAvatar();
 
-        assertEquals(channelPage.clickSubscribeButton()
-                .getSubscribePopupFragment()
-                .getTextFromSignInButton(), expectedSubscribeMessage , "Subscribe popup message is incorrect!");
+        assertEquals("Subscribe popup message is incorrect!",
+                channelPage.clickSubscribeButton()
+                        .getSubscribePopupFragment()
+                        .getTextFromSignInButton(), expectedSubscribeMessage);
 
         channelPage.closeCurrentTab();
     }
